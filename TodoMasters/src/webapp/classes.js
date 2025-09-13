@@ -1,7 +1,7 @@
 import {observerMixin} from './mixin.js'
 
 
-class TodoItem {
+export class TodoItem {
     constructor(text) {
         this.text = text;
     }
@@ -11,7 +11,7 @@ class TodoItem {
     }
 }
 
-class TodoList { // candidate for Singleton as we need only one instance of TodoList 
+export class TodoList { // candidate for Singleton as we need only one instance of TodoList 
     // Data
     #data = new Set();
     get items() { return this.#data };
@@ -27,6 +27,30 @@ class TodoList { // candidate for Singleton as we need only one instance of Todo
     // to force only one instance creation 
     constructor() {
         if (TodoList.instance) { throw new Error("Use TodoList.getInstance() to access the list") };
+    }
+
+    // List behaviour (methods)
+    add(item){
+        const array = Array.from(this.#data);
+        const todoExists = array.filter((todo) => todo.equals(item)).length > 0;
+        if(!todoExists){
+            this.#data.add(todoExists);
+        }
+    }
+
+    delete(todo_text){
+        const array = Array.from(this.#data);
+        const todoToDelete = array.filter((todo) => todo.text == todo_text)[0];
+        this.#data.delete(todoToDelete);
+    }
+
+    find(todo_text){
+        const array = Array.from(this.#data);
+        return array.find((todo) => todo.text == todo_text);
+    }
+
+    replaceList(list){
+        this.#data = list;
     }
 }
 

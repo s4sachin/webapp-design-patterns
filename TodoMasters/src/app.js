@@ -1,6 +1,6 @@
 globalThis.DOM = {  };
 
-const DOM = golbalThis.DOM;
+const DOM = globalThis.DOM;
 
 document.addEventListener("DOMContentLoaded", () => { 
     DOM.todoList = document.getElementById("todo-list");
