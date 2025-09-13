@@ -10,20 +10,21 @@ export class Command {
     }
 }
 
-const Commands = {
+export const Commands = {
     ADD: "add",
     DELETE: "delete"
 };
 
-const CommandExecutor = {
+export const CommandExecutor = {
     execute(command) {
         const todoList = TodoList.getInstance();
         switch (command.name) {
             case Commands.ADD:
-                const todoInput = globalThis.DOMException.todoInput;
+                const todoInput = globalThis.DOM.todoInput;
                 const todoText = todoInput.value.trim();
                 const itemInList = todoList.find(todoText);
                 if (todoText != "" && itemInList == undefined) {
+                    todoInput.value = '';
                     todoList.add(new TodoItem(todoText))
                 }
                 break;
