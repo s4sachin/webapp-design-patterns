@@ -1,3 +1,7 @@
+@view-transition {
+    navigation: auto;
+}
+
 :root {
     --background-surface: #F1F1F3;
     --primaryColor: #C06918;
